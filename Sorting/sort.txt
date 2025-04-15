@@ -1,0 +1,11 @@
+Bubble Sort → Easy to understand.
+Selection Sort → Understand minimal swaps.
+Insertion Sort → Learn adaptive behavior for small or sorted datasets.
+Merge Sort → Practice recursion and stable sorting.
+Quick Sort → Master partitioning and recursion.
+Heap Sort → Learn heap data structure and its sorting application.
+Counting Sort → Introduction to non-comparison sorting.
+Radix Sort → Extend non-comparison sorting for large numbers.
+Bucket Sort → Understand its average-case efficiency.
+Shell Sort → Optimize insertion sort for specific cases.
+Timsort and Introsort → Real-world hybrid sorting.
