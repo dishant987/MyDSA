@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Leader",
+            "request": "launch",
+            "mainClass": "Leader",
+            "projectName": "Array_7acf3282"
+        },
+        {
+            "type": "java",
+            "name": "Dsa",
+            "request": "launch",
+            "mainClass": "Dsa",
+            "projectName": "Array_7acf3282"
+        },
+        {
+            "type": "java",
             "name": "MainArray",
             "request": "launch",
             "mainClass": "MainArray",
