@@ -1,3 +1,9 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinaryTree {
     private TreeNode root = null;
 
@@ -36,7 +42,7 @@ public class BinaryTree {
         insert(root, value);
     }
 
-    public TreeNode insert(TreeNode node, int value) {
+    private TreeNode insert(TreeNode node, int value) {
         if (node == null) {
             node = new TreeNode(value);
             return node;
@@ -60,9 +66,6 @@ public class BinaryTree {
             return cuNode.data;
         }
         while (cuNode != null) {
-            if (cuNode.data == value) {
-                return cuNode.data;
-            }
             if (cuNode.data > value) {
                 cuNode = cuNode.leftNode;
             } else {
@@ -77,7 +80,7 @@ public class BinaryTree {
         return size(root);
     }
 
-    public int size(TreeNode root) {
+    private int size(TreeNode root) {
         if (root == null) {
             return 0;
         }
@@ -88,7 +91,7 @@ public class BinaryTree {
         preOrderTraversal(root);
     }
 
-    public void preOrderTraversal(TreeNode node) { // root -> left -> right
+    private void preOrderTraversal(TreeNode node) { // root -> left -> right
         if (node == null) {
             return;
         }
@@ -102,11 +105,10 @@ public class BinaryTree {
         inOrderTraversal(root);
     }
 
-    public void inOrderTraversal(TreeNode node) { // left -> root -> right
+    private void inOrderTraversal(TreeNode node) { // left -> root -> right
         if (node == null) {
             return;
         }
-
         inOrderTraversal(node.leftNode);
         System.out.println(node.data);
         inOrderTraversal(node.rightNode);
@@ -116,17 +118,16 @@ public class BinaryTree {
         postOrderTraversal(root);
     }
 
-    public void postOrderTraversal(TreeNode node) { // left -> right -> root
+    private void postOrderTraversal(TreeNode node) { // left -> right -> root
         if (node == null) {
             return;
         }
-
         postOrderTraversal(node.leftNode);
         postOrderTraversal(node.rightNode);
         System.out.println(node.data);
     }
 
-    public TreeNode getMin(TreeNode root) {
+    private TreeNode getMin(TreeNode root) {
         if (root == null)
             return null;
 
@@ -168,7 +169,83 @@ public class BinaryTree {
     }
 
     public void getKNodeDistance(int distance) {
-            getKNodeDistance(root,distance);
+        getKNodeDistance(root, distance);
+    }
+
+    public int getDepth(int value) {
+        return getDepth(root, value, 0);
+    }
+
+    private int getDepth(TreeNode node, int value, int depth) {
+        if (node == null)
+            return -1;
+        if (node.data == value)
+            return depth;
+
+        int left = getDepth(node.leftNode, value, depth + 1);
+        if (left != -1)
+            return left;
+
+        return getDepth(node.leftNode, value, depth + 1);
+    }
+
+    public void levelOrderTraversal() {
+        if (root == null) {
+            return;
+        }
+        levelOrderTraversal(root);
+    }
+
+    private void levelOrderTraversal(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            TreeNode currNode = queue.poll();
+
+            System.out.println(currNode.data + " ");
+            if (currNode.leftNode != null) {
+                queue.add(currNode.leftNode);
+            }
+            if (currNode.rightNode != null) {
+                queue.add(currNode.rightNode);
+            }
+        }
+    }
+
+    public List<List<Integer>> levelOrderTraversalList() {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        return levelOrderTraversalList(root);
+    }
+
+    private List<List<Integer>> levelOrderTraversalList(TreeNode node) {
+        if (node == null) {
+            return Collections.emptyList();
+        }
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            List<Integer> currentLevel = new ArrayList<>();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode currNode = queue.poll();
+                currentLevel.add(currNode.data);
+                if (currNode.leftNode != null) {
+                    queue.add(currNode.leftNode);
+                }
+                if (currNode.rightNode != null) {
+                    queue.add(currNode.rightNode);
+                }
+            }
+            result.add(currentLevel);
+        }
+        return result;
     }
 
     @Override

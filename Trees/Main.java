@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Main {
         bt.insert(25);
         bt.insert(32);
         System.out.println(bt);
-        bt.getKNodeDistance(2);
-
+        List<List<Integer>> l1 = bt.levelOrderTraversalList();
+        System.out.println(l1);
     }
 }
