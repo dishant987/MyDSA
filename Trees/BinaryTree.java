@@ -248,6 +248,27 @@ public class BinaryTree {
         return result;
     }
 
+    int diameter = 0;
+
+    public int height(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        int leftHeight = height(root.leftNode);
+        int rightHeight = height(root.rightNode);
+
+        // Update diameter: longest path through this node
+        diameter = Math.max(diameter, leftHeight + rightHeight);
+
+        // Height of current node
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    public int getDiameter() {
+        height(root);
+        return diameter;
+    }
+
     @Override
     public String toString() {
         return treeToString(root);

@@ -10,8 +10,7 @@ public class Main {
         bt.insert(11);
         bt.insert(25);
         bt.insert(32);
-        System.out.println(bt);
-        List<List<Integer>> l1 = bt.levelOrderTraversalList();
-        System.out.println(l1);
+        int num = bt.getDiameter();
+       System.out.println(num);
     }
 }
